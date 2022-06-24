@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;1,300&family=Roboto+Mono:ital,wght@0,300;1,700&display=swap');
+
+.LoginHeader{
+    font-size: larger;
+    color: white;
+    position: absolute;
+    margin-top: -800px;
+    font-weight: 700;
+}
+.loginDiv{
+    flex-wrap: wrap;
+    color: white;
+    background-color: rgba(50, 50, 50, 0.5);
+    margin: 10% 30%;
+    top: 10%;
+    position: absolute;
+    width: 400px;
+    height: 200px;
+    padding-top: 10px;
+    border-radius: 5px;
+}
+input[type=tel]{
+    border: none;
+    width: 250px;
+    height: 30px;
+    margin-left: 105px;
+    margin-top: 50px;
+    outline: none;
+    border-radius: 2px;
+}
+input[type=tel]:focus{
+    border-bottom: 3px solid dodgerblue;
+    transition: all 0.3s;
+}
+.varification{
+    border: none;
+    width: 250px;
+    height: 30px;
+    outline: none;
+    border-radius: 2px;
+    margin-left: 105px;
+    margin-top: 10px;
+    display: none;
+}
+.contryCode{
+    margin-top: 50px;
+    margin-left: 3px;
+    border: none;
+    height: 32px;
+    width: 100px;
+    position: absolute;
+    outline: none;
+    border-radius: 2px;
+}
+.nextBtn{
+    width: 150px;
+    height: 30px;
+    border: none;
+    margin-left: 30%;
+    margin-top: 20px;
+    color:brown;
+    font-weight: 600;
+    outline: none;
+    border-radius: 5px;
+}
+.nextBtn:hover{
+    background-color: blueviolet;
+    color: white;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+.lablePhone{
+    position: absolute;
+    margin-top: 25px;
+    margin-left: 100px;
+    font-size: small;
+}
+.verifyWait{
+    color: gray;
+    margin-left: 30px;
+    font-size: smaller; 
+    display: none;
+}

@@ -1,0 +1,364 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;1,300&family=Roboto+Mono:ital,wght@0,300;1,700&display=swap');
+
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #2E133A;
+    font-family: 'Roboto Mono', monospace;
+}
+
+nav {
+    padding: 0;
+    margin: 0;
+
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    height: auto;
+}
+
+nav h1 {
+    position: absolute;
+    margin-left: 45%;
+    color: white;
+    margin-top: 15px;
+}
+
+nav ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 100%;
+    height: auto;
+    margin-bottom: 0;
+    line-height: 15px;
+}
+
+nav ul li {
+    list-style: none;
+    display: flex;
+    color: white;
+    justify-content: center;
+    font-weight: 600;
+    width: 190px;
+    margin-top: 70px;
+    height: 20px;
+}
+
+nav ul li:hover {
+    cursor: pointer;
+    color: brown;
+    transition: all 0.2s;
+    border-bottom: 2px solid;
+}
+
+nav ul li:active {
+    color: brown;
+    border-bottom: 2px solid;
+}
+
+
+.bgdBalance {
+    background-color: rgb(5, 201, 5);
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    margin-top: 68px;
+    border-radius: 50%;
+    margin-left: 54%;
+    animation: blinkBalance 1s infinite;
+}
+
+@keyframes blinkBalance {
+    0% {
+        border-radius: 100%;
+    }
+
+    25% {
+        border-radius: 50%;
+    }
+
+    75% {
+        border-radius: 0%;
+    }
+
+    100% {
+        border-radius: 50%;
+    }
+
+}
+
+.homeMain {
+    background-color: white;
+    box-shadow: 0 5px 5px 0 rgb(60, 60, 60);
+    width: 300px;
+    height: 350px;
+    margin-left: 30%;
+    margin-top: 70px;
+    padding-left: 5px;
+    border-radius: 5px;
+    color: gray;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.homeMain h2 {
+    margin-top: 10px;
+    margin-left: 45%;
+
+}
+
+.homeMain p {
+    font-weight: 600;
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 14px;
+}
+
+.playBtn {
+    margin-top: 20px;
+    margin-left: 100px;
+    color: white;
+    background-color: brown;
+    border-radius: 30px;
+    font-weight: 600;
+    border: none;
+    width: 100px;
+    height: 50px;
+    transition: all 0.3s;
+}
+
+.playBtn:hover {
+    cursor: pointer;
+    color: brown;
+    background-color: white;
+    border: solid brown 3px;
+    transition: all 0.3s;
+
+}
+
+table {
+    width: 300px;
+    background-color: white;
+    margin-top: 5%;
+    margin-left: 35%;
+    text-align: center;
+    height: 300px;
+    box-shadow: 5px 0 5px 0 rgba(0, 0, 0, 0.3);
+    border: none;
+    cursor: pointer;
+}
+
+.bingoB,
+.bingoI,
+.bingoN,
+.bingoO,
+.bingoG {
+    background-color: red;
+}
+
+table td:hover {
+    background-color: #2E133A;
+    border-radius: 5px;
+    color: white;
+}
+#N3{
+    font-size: 10px;
+}
+.bingoBtn {
+    width: 100px;
+    height: 50px;
+    margin-top: 20px;
+    margin-left: 43%;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 2px brown;
+    color: brown;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.bingoBtn:hover {
+    background-color: brown;
+    color: white;
+    transition: all 0.3s;
+}
+
+.generatedNum {
+    background-color: white;
+    width: 100px;
+    height: 100px;
+    margin-top: 100px;
+    margin-left: 100px;
+    position: absolute;
+    text-align: center;
+    line-height: 100px;
+    color: brown;
+    font-size: 50px;
+    font-weight: 600;
+    border-radius: 5px;
+}
+
+.paymentWithdraw {
+    margin-left: 15%;
+    margin-top: 10%;
+    background-color: white;
+    width: 400px;
+    height: 200px;
+    color: gray;
+    border-radius: 3px;
+}
+
+.paymentWithdraw h2 {
+    text-align: center;
+}
+
+.paymentWithdraw select {
+    width: 100px;
+    height: 30px;
+    border: solid 1px gray;
+    margin-left: 20px;
+    margin-top: 40px;
+    border-radius: 3px;
+
+}
+
+.paymentWithdraw option {
+    border-radius: 0;
+}
+
+.AddBalance input[type=text] {
+    width: 300px;
+    height: 30px;
+    border: none;
+    border-bottom: solid 2px brown;
+    color: rgb(58, 58, 58);
+    outline: none;
+}
+
+.balanceContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.AddBalance {
+    margin-left: 50%;
+    margin-top: 130px;
+    background-color: white;
+    width: 400px;
+    height: 100px;
+    text-align: center;
+    color: gray;
+    position: absolute;
+    border-radius: 3px;
+
+}
+
+.AddBalance button {
+    width: 50px;
+    height: 30px;
+    background-color: white;
+    border: 2px solid brown;
+    border-radius: 3px;
+    color: brown;
+    font-weight: 600;
+    margin-left: 10px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.AddBalance button:hover {
+    background-color: brown;
+    color: white;
+
+}
+
+.paymentAddress {
+    width: 250px;
+    height: 30px;
+    margin-left: 20px;
+    border: none;
+    border-bottom: solid 2px brown;
+}
+
+.reqBtn {
+    margin-top: 40px;
+    margin-left: 150px;
+    width: 100px;
+    height: 30px;
+    background-color: white;
+    border-radius: 5px;
+    border: solid 2px brown;
+    color: brown;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.reqBtn:hover {
+    background-color: brown;
+    color: white;
+    border: none;
+}
+
+#cpidNotifier {
+    background-color: rgba(61, 61, 61, 0.9);
+    color: white;
+    width: 100px;
+    height: 30px;
+    position: absolute;
+    margin-top: -35px;
+    margin-left: -85px;
+    text-align: center;
+    line-height: 30px;
+    border-radius: 5px;
+    visibility: hidden;
+}
+.accountDetails{
+    background-color: white;
+    margin-top: 5%;
+    margin-left: 400px;
+    border-radius: 5px;
+    width: 400px;
+    height: 300px;
+}
+.accountDetails h2{
+    text-align: center;
+    margin-top: 10px;
+}
+.accountDetails div{
+    margin-left: 10px;
+    margin-top: 30px;
+}
+.accountDetails div lable{
+    margin-top: 40px;
+}
+#twoStepasswordConfirm, #twoStepassword{
+    width: 300px;
+    height: 30px;
+    border: none;
+    border-bottom: solid 2px brown;
+}
+#twoStepasswordConfirm{
+    margin-top: 20px;
+}
+#twoStepassword{
+    margin-top: 10px;
+}
+.setPassSpan{
+    margin-top: 30px;
+    font-size: medium;
+}
+.savebtn{
+    border: brown 2px solid;
+    width: 100px;
+    height: 30px;
+    color: brown;
+    margin-top: 35px;
+    margin-left: 130px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.savebtn:hover{
+    background-color: brown;
+    color: white;
+}
