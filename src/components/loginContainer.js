@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import '../styles/login.css';
+import LoginHeader from './header';
 
 export class LoginBox extends Component {
     constructor(props) {
@@ -7,7 +8,8 @@ export class LoginBox extends Component {
     
       this.state = {
          countryCode: '',
-         phone: ''
+         phone: '',
+         value: ''
          
       }
 
@@ -22,11 +24,13 @@ export class LoginBox extends Component {
         phone: event.target.value
       })
     }
+    handlePhoneChange(event) {    this.setState({value: event.target.value});  }
   render() {
     return (
+      <>
+        <LoginHeader />
         <div className='loginDiv'>
         <form >
-
             <lable>
                 <span className='lablePhone'>Phone Number</span>
                 <select className='contryCode' 
@@ -46,7 +50,7 @@ export class LoginBox extends Component {
                 className='phoneNumber' 
                 id='telNum' 
                 placeholder='000-000-000'  
-                value={this.state.countryCode}
+                value={this.state.countryCode + this.state.value}
                 onchange={this.handlePhoneChange}
                 required
                 />
@@ -56,6 +60,7 @@ export class LoginBox extends Component {
             <button className='nextBtn' onpress={this.action}>Next</button>
                     </form>
         </div>
+        </>
     );
   }
 }

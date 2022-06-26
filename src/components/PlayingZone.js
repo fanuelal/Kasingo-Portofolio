@@ -19,9 +19,6 @@ export class PlayingZone extends Component {
   //   console.log(rand);
   //   this.setValue(rand);
   // }
-
-
-
   render() {
     return (
       <div>

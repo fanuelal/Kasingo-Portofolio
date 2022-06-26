@@ -43,8 +43,14 @@ nav ul li {
     width: 190px;
     margin-top: 70px;
     height: 20px;
+    text-decoration: none;
 }
-
+nav ul li Link{
+    text-decoration: none;
+}
+a{
+    text-decoration: none;
+}
 nav ul li:hover {
     cursor: pointer;
     color: brown;
@@ -182,6 +188,9 @@ table td:hover {
     background-color: brown;
     color: white;
     transition: all 0.3s;
+}
+Link{
+    text-decoration: none;
 }
 
 .generatedNum {
