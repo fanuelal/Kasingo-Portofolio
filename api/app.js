@@ -4,10 +4,10 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
-
+const bodyParser = require('body-parser');
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var testRouter = require('./routes/testApi');
+var dbRouter = require('./routes/dbAuthentication');
 var app = express();
 
 // view engine setup
@@ -23,8 +23,7 @@ app.use(cors());
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
-app.use('/testApi', testRouter);
-
+app.use('/dbAuthentication', dbRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

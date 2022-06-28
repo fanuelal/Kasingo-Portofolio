@@ -1,51 +1,43 @@
 // import { response } from 'express';
-import React, { Component } from 'react'
+import React from 'react'
+import { useState } from 'react'
+import {setAuth, getAuth} from '../utils/privateRoutes';
 import '../styles/login.css';
+import Axios from 'axios';
 
-export class LoginBox extends Component {
-    constructor(props) {
-      super(props)
-    
-      this.state = {
-         countryCode: '',
-         phone: '',
-         value: '',
-      }
-
+function LoginBox() {
+    const [phone, setPhone] =  useState("");
+    const [countryCode, setCountryCode] = useState("");
+    const [loginStatus, setLoginStatus] = useState("");
+    const handleCountryCodeChange = (event) => {
+      setCountryCode(event.target.value)
     }
-    handleCountryCodeChange = (event) => {
-      this.setState({
-        countryCode: event.target.value
+    const handlePhoneChange = (event) => {
+         setPhone(event.target.value)
+    }
+    const authenticate = () => {
+      Axios.post('http://localhost:9000/dbAuthentication/', 
+      {completePhone: countryCode + phone})
+      .then((res) => {
+        res.text();
+        console.log(res)
+        // if(response.data.message) setLoginStatus(response.data.message)
+        // else{
+        //   setLoginStatus(response.data[0].phonNumber)
+        // } 
       })
     }
-    handlePhoneChange = (event) => {
-      this.setState({
-        phone: event.target.value
-      })
-    }
-    handleSubmit = (event) => {
-      alert('A form was submitted: ' + this.state.countryCode + this.state.phone);
 
-      fetch('http://localhost:4000',{
-        method: 'POST',
-        body: JSON.stringify(this.state.value)
-      }).then((response) => {
-        console.log(response)
-        return response.json();
-      }).catch(err => console.log(err))
-      event.preventDefault();
-    }
-  render() {
     return (
       <>
-        <div className='LoginHeader'>KASINGO</div>
+        <div className='LoginHeader'>KASINGO <h1>{loginStatus}</h1></div>
         <div className='loginDiv'>
-        <form onSubmit={this.handleSubmit}>
-            <lable>
+
+        <form onSubmit={authenticate}>
                 <span className='lablePhone'>Phone Number</span>
                 <select className='contryCode' 
-                  value={this.state.countryCode} 
-                  onChange={this.handleCountryCodeChange} 
+                  value={countryCode} 
+                  onChange={handleCountryCodeChange} 
                   id='countryCodeId'>
                 <option value="selectCountry">
                         Select Country
@@ -60,20 +52,18 @@ export class LoginBox extends Component {
                 className='phoneNumber' 
                 id='telNum' 
                 placeholder='000-000-000'  
-                value={this.state.countryCode + this.state.phone}
-                onChange={(event) => {this.setState(
-                  {phone: event.target.value.slice(this.state.countryCode.length)})}}
+                value={countryCode + phone}
+                onChange={(event) => {
+                  setPhone(event.target.value.slice(countryCode.length))}}
                 required
                 />
                 <input type="text" className='varification' placeholder = 'xxxxx'/>
                 <p className='verifyWait'>Waiting for 5 min</ p>
-            </lable>
             <button className='nextBtn' type='submit'>Next</button>
             </form>
         </div>
         </>
     );
   }
-}
 
 export default LoginBox

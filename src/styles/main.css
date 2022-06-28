@@ -40,31 +40,10 @@ nav ul li {
     color: white;
     justify-content: center;
     font-weight: 600;
-    width: 100%;
+    width: 150px;
     margin-top: 70px;
     height: 20px;
     text-decoration: none;
-}
-nav ul li:before{
-	content:'';
-	width:0%;
-	transition:all 0.3s ease;
-	left:50%;
-}
-nav ul li:after{
-	content:'';
-	width:20%;
-	transition:all 0.3s ease;
-	left:0%;
-}
-nav ul li:after{
-	content:'';
-	position:absolute;
-	bottom:0px;
-	left:50%;
-	background:#FFDA00;
-	height:3px;
-	width:50%;
 }
 .onlineCounter{
     display: flex;
@@ -75,7 +54,6 @@ nav ul li:after{
     margin-top: 0px;
     height: 20px;
     text-decoration: none;
-    
 }
 nav ul li Link{
     text-decoration: none;
@@ -83,16 +61,13 @@ nav ul li Link{
 a{
     text-decoration: none;
 }
-nav ul li:hover:before{
-	content:'';
-	position:absolute;
-	bottom:0px;
-	left:0px;
-	background:#FFDA00;
-	height:3px;
-	width:50%;
+nav ul li:hover{
+    border-left: 2px solid brown;
+    transform: matrix3d(90deg);
+    font-size: 17px;
+    text-shadow: rgba(255, 255, 255, 0.5);
+    transition: all 0.3s;
 }
-
 nav ul li:active {
     color: brown;
     border-bottom: 2px solid;

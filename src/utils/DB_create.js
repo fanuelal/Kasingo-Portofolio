@@ -13,28 +13,28 @@ const pool = createPool({
     connectionLimit: 100 
 });
 
-const register = () => {
-    pool.query(`INSERT INTO useraccount(PhoneNumber) VALUES(?)`,['+25223244'], (err, result, field) => {
-        if(err) return console.log(err)
-        return console.log(result)
-    })
-}
-const checkRegistred = () =>{
-    pool.query(`SELECT phoneNumber FROM useraccount WHERE phoneNumber = ?`,['+25223244'], (err, result, field) => {
-        if(err) return console.log(err)
-        if(result != '') return console.log(`data already exist ${result}`)
-        console.log('data is not there registering')
-        register()
-    })
-}
-
 app.get('/', function (req, res) {
     (err) => {
         if(err) throw err;
+    }   
+    pool.query(`SELECT phoneNumber FROM useraccount WHERE phoneNumber = ?`,['+55787364'], (err, result, field) => {
+        if(err) return res.send('error on selecting the phoneNUmber')
+        if(result != '') return res.json(result)
+        else{
+        res.send('data is not there. Start Registering')
+        try{
+        pool.query(`INSERT INTO useraccount(PhoneNumber) VALUES(?)`,['+55787364'], (err, newResult, field) => {
+            if(!!err) return console.log('error on inserting')
+            return res.send(newResult)
+        })
     }
-   res.send('successfully getting');
+    catch(err){
+        console.log('error on registration')
+    }
+    }
+    })
 })
-checkRegistred();
+
 app.listen(PORT, () =>{
     console.log(`listening on ${PORT}`)
 })

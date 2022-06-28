@@ -7,3 +7,5 @@ CREATE TABLE Kasingodb.UserAccount(
     Accountpassword varchar(250),
     validCode varchar(10) default null,
 )
+
+ALTER TABLE Kasingodb.UserAccount Auto_Increment = 1;
