@@ -40,10 +40,42 @@ nav ul li {
     color: white;
     justify-content: center;
     font-weight: 600;
-    width: 190px;
+    width: 100%;
     margin-top: 70px;
     height: 20px;
     text-decoration: none;
+}
+nav ul li:before{
+	content:'';
+	width:0%;
+	transition:all 0.3s ease;
+	left:50%;
+}
+nav ul li:after{
+	content:'';
+	width:20%;
+	transition:all 0.3s ease;
+	left:0%;
+}
+nav ul li:after{
+	content:'';
+	position:absolute;
+	bottom:0px;
+	left:50%;
+	background:#FFDA00;
+	height:3px;
+	width:50%;
+}
+.onlineCounter{
+    display: flex;
+    color: black;
+    justify-content: center;
+    font-weight: 600;
+    width: 190px;
+    margin-top: 0px;
+    height: 20px;
+    text-decoration: none;
+    
 }
 nav ul li Link{
     text-decoration: none;
@@ -51,11 +83,14 @@ nav ul li Link{
 a{
     text-decoration: none;
 }
-nav ul li:hover {
-    cursor: pointer;
-    color: brown;
-    transition: all 0.2s;
-    border-bottom: 2px solid;
+nav ul li:hover:before{
+	content:'';
+	position:absolute;
+	bottom:0px;
+	left:0px;
+	background:#FFDA00;
+	height:3px;
+	width:50%;
 }
 
 nav ul li:active {
@@ -63,15 +98,28 @@ nav ul li:active {
     border-bottom: 2px solid;
 }
 
-
+.onlinePlayStatus{
+    display: flex;
+    margin-top: 50px;
+    justify-content: center;
+    flex-wrap: wrap;
+    float: right;
+    position: fixed;
+    background-color: white;
+    width: 300px;
+    height: 30px;
+    position: relative;
+    padding-top: 5px;
+    border-radius: 2px;
+}
 .bgdBalance {
     background-color: rgb(5, 201, 5);
     position: absolute;
     width: 20px;
     height: 20px;
-    margin-top: 68px;
+    margin-top: 5px;
     border-radius: 50%;
-    margin-left: 54%;
+    margin-left: -70%;
     animation: blinkBalance 1s infinite;
 }
 
@@ -80,16 +128,22 @@ nav ul li:active {
         border-radius: 100%;
     }
 
-    25% {
+    20% {
         border-radius: 50%;
     }
 
-    75% {
-        border-radius: 0%;
+    40% {
+        border-radius: 25%;
     }
 
-    100% {
+    60% {
         border-radius: 50%;
+    }
+    80%{
+        border-radius: 75%;
+    }
+    100%{
+        border-radius: 100%;
     }
 
 }
@@ -106,6 +160,7 @@ nav ul li:active {
     color: gray;
     display: flex;
     flex-wrap: wrap;
+    position: fixed;
 }
 
 .homeMain h2 {
@@ -369,5 +424,11 @@ Link{
 }
 .savebtn:hover{
     background-color: brown;
+    color: white;
+}
+.pageNAvailable{
+    background-color: red;
+    width: 400px;
+    height: 300px;
     color: white;
 }
