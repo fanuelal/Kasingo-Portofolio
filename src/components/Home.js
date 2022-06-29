@@ -1,23 +1,9 @@
 import React, { Component } from 'react'
+import { useNavigate } from 'react-router'
 import '../styles/main.css'
 import Nav from './nav'
-export class Home extends Component {
-    constructor(props) {
-      super(props)
-  
-      this.state = {
-        apiRes: ''
-      };
-    }
-    callApi = () => {
-      fetch('http://localhost:5000/testApi')
-        .then(res => res.text())
-        .then(res => this.setState({ apiRes: res }))
-    }
-    componentWillUnmount(){
-      this.callApi();
-    }
-  render() {
+export function Home () {
+  const navigate = useNavigate();
     return (
       <div>
         <Nav />
@@ -28,7 +14,7 @@ export class Home extends Component {
           3 The numbers are assigned at random in the I column between 16 and 30.<br /><br />
           4 The numbers in the B column are between 1 and 15.
           </p>
-          <button className='playBtn'>Start</button>
+          <button className='playBtn' onClick={() => navigate('/playingZone')}>Start</button>
         </div>
         <div className='onlinePlayStatus'>
         <div className='bgdBalance'></div>
@@ -39,6 +25,5 @@ export class Home extends Component {
 
     )
   }
-}
 
 export default Home

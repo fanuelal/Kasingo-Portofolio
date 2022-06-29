@@ -1,36 +1,45 @@
-// import { response } from 'express';
-import React from 'react'
+import React, { useContext } from 'react'
 import { useState } from 'react'
-import {setAuth, getAuth} from '../utils/privateRoutes';
+import {auth} from '../utils/privateRoutes';
 import '../styles/login.css';
 import Axios from 'axios';
-
+import { UserContext } from './userContex';
+import { useNavigate } from 'react-router';
+// import { use } from '../../api/routes/dbAuthentication';
+export var userAcountobj = {}
 function LoginBox() {
+    // const navigate = useNavigate();
+    // const location = useLocation();
     const [phone, setPhone] =  useState("");
     const [countryCode, setCountryCode] = useState("");
-    const [loginStatus, setLoginStatus] = useState("");
+    const {user, setUser} = useContext(UserContext);
+    const navigate = useNavigate();
+    
     const handleCountryCodeChange = (event) => {
       setCountryCode(event.target.value)
     }
-    const handlePhoneChange = (event) => {
-         setPhone(event.target.value)
+    const setterUserVal = (value) => {
+      setUser(value)
     }
-    const authenticate = () => {
+
+    const authenticate = (event) => {
+      event.preventDefault();
       Axios.post('http://localhost:9000/dbAuthentication/', 
-      {completePhone: countryCode + phone})
-      .then((res) => {
-        res.text();
-        console.log(res)
-        // if(response.data.message) setLoginStatus(response.data.message)
-        // else{
-        //   setLoginStatus(response.data[0].phonNumber)
-        // } 
+      {completePhone: countryCode + phone}).then((response) => {
+        if(response.data[0]){
+              auth.token = true
+               navigate('/');
+              userAcountobj = response.data[0]
+              // setterUserVal(response.data[0]);
+              // console.log(user)
+          console.log(userAcountobj)
+        }
       })
     }
 
     return (
       <>
-        <div className='LoginHeader'>KASINGO <h1>{loginStatus}</h1></div>
+        <div className='LoginHeader'>KASINGO {}</div>
         <div className='loginDiv'>
 
         <form onSubmit={authenticate}>

@@ -1,7 +1,9 @@
 const express = require('express')
 const { createPool } = require('mysql');
-const router = express.Router()
+const cors = require('cors');
 
+const router = express.Router()
+const otpGenerator = require('otp-generator')
 
 const pool = createPool({
     host: "localhost",
@@ -10,19 +12,34 @@ const pool = createPool({
     database: "kasingodb",
     connectionLimit: 100
 });
-
+const optAuthentication = () => {
+    const genratedOtp = otpGenerator.generate(6, {upperCaseAlphabets: false})
+    return genratedOtp
+}
+const setOtpdb = (otpGenerated, phoneNumber) => {
+    pool.query(`UPDATE useraccount SET validCode = ? WHERE phoneNumber = ?`,
+    [otpGenerated, phoneNumber],
+    (err, result) => {
+        if (!!err) return console.log('error on inserting')
+        return console.log(result)
+    })
+}
 router.post('/', (req, res) => {
     const phoneNumber = req.body.completePhone
     console.log(phoneNumber)
     let Loginresult = false
-    pool.query(`SELECT userId FROM useraccount WHERE phoneNumber = ? `,
+    pool.query(`SELECT * FROM useraccount WHERE phoneNumber = ? `,
         [phoneNumber],
         (err, result) => {
             if (!!err) return console.log('error on inserting')
-            if (result != '') {
+            if (result) {
                 console.log('already account is registered ')
-                res.json(result)
-                console.log(result)
+                const otpGenerated = optAuthentication()
+                setOtpdb(otpGenerated,phoneNumber)
+                console.log(otpGenerated)
+                
+                // res.json(result)
+                res.send(result)
             }
             else {
                 register(res, phoneNumber)
@@ -36,7 +53,7 @@ register = (res, phoneNumber) => {
         (err, result) => {
             if (!!err) return console.log('error on inserting')
             console.log(result)
-            return res.json(result)
+            console.log(result)
         })
 }
 router.get('/', (req, res) => {
