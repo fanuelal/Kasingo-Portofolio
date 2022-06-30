@@ -30,8 +30,6 @@ function LoginBox() {
               auth.token = true
                navigate('/');
               userAcountobj = response.data[0]
-              // setterUserVal(response.data[0]);
-              // console.log(user)
           console.log(userAcountobj)
         }
       })

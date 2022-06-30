@@ -1,77 +1,101 @@
-import React, { Component } from 'react'
+import React, { useEffect, useState } from 'react'
 import '../styles/main.css'
 import Nav from './nav'
-export class PlayingZone extends Component {
-  constructor(props) {
-    super(props)
+import Axios from 'axios';
+import { userAcountobj } from './loginContainer';
 
-    this.state = {
-      value: Math.floor(1 + Math.random() * 74)
-    }
-  }
+export function PlayingZone() {
+  // let {value, setValue} = useState(0)
 
-  handleClick = (event) => {
+  const handleClick = (event) => {
     document.getElementById(event.currentTarget.id).style.background = '#2E133A';
     document.getElementById(event.currentTarget.id).style.color = 'white';
   }
-  // handleLoad = () => {
-  //   const rand = Math.Floor(1 + Math.random() * 74);
-  //   console.log(rand);
-  //   this.setValue(rand);
-  // }
-  render() {
-    return (
-      <div>
-        <Nav />
-        <div className='generatedNum' onLoad={this.handleLoad} onContextMenu={false}>{this.state.value}</ div>
-        <table>
-          <tr>
-            <th className='bingoB'>B</th>
-            <th className='bingoI'>I</th>
-            <th className='bingoN'>N</th>
-            <th className='bingoG'>G</th>
-            <th className='bingoO'>O</th>
-          </tr>
-          <tr>
-            <td onClick={this.handleClick} id='B1'>23</td>
-            <td onClick={this.handleClick} id='I1'>43</td>
-            <td onClick={this.handleClick} id='N1'>54</td>
-            <td onClick={this.handleClick} id='G1'>67</td>
-            <td onClick={this.handleClick} id='O1'>5</td>
-          </tr>
-          <tr>
-            <td onClick={this.handleClick} id='B2'>45</td>
-            <td onClick={this.handleClick} id='I2'>67</td>
-            <td onClick={this.handleClick} id='N2'>5</td>
-            <td onClick={this.handleClick} id='G2'>65</td>
-            <td onClick={this.handleClick} id='O2'>12</td>
-          </tr>
-          <tr>
-            <td onClick={this.handleClick} id='B3'>47</td>
-            <td onClick={this.handleClick} id='I3'>74</td>
-            <td onClick={this.handleClick} id='N3' >Free</td>
-            <td onClick={this.handleClick} id='G3'>67</td>
-            <td onClick={this.handleClick} id='O3'>16</td>
-          </tr>
-          <tr>
-            <td onClick={this.handleClick} id='B4'>3</td>
-            <td onClick={this.handleClick} id='I4'>67</td>
-            <td onClick={this.handleClick} id='N4'>33</td>
-            <td onClick={this.handleClick} id='G4'>56</td>
-            <td onClick={this.handleClick} id='O4'>9</td>
-          </tr>
-          <tr>
-            <td onClick={this.handleClick} id='B5'>22</td>
-            <td onClick={this.handleClick} id='I5'>4</td>
-            <td onClick={this.handleClick} id='N5'>23</td>
-            <td onClick={this.handleClick} id='G5'>67</td>
-            <td onClick={this.handleClick} id='O5'>48</td>
-          </tr>
-        </table>
-        <button className='bingoBtn'>Bingo</button>
-      </div>
-    )
+
+  var [boardCells, setboardCells] = useState(Array(5).fill(Array(5).fill(null)))
+  var [lotPlayer, setLotPlayer] = useState('Go')
+  const borderGenerate = () => {
+    Axios.post('http://localhost:9000/playLive', { userAcountobj }).then((response) => {
+      setboardCells(response.data)
+      console.log(boardCells)
+    })
   }
+  const lotterypick = () => { 
+    setInterval(() => {
+      setLotPlayer(Math.floor(Math.random() * 74))
+    }, 5000);
+  } 
+  // const lotterypick = () => {
+  //   Axios.post('http://localhost:9000/lotpick', {userAcountobj}).then((response) => {
+  //     console.log(response.data)
+  //   })
+  // }
+  // useEffect(() => {
+    
+  // })
+  useEffect(() => {
+    lotterypick()
+    borderGenerate()
+    
+  }, []);
+    
+
+  const windChecker = () => {
+    console.log("winner")
+  }
+
+  return (
+    <div>
+      <Nav />
+      <div className='generatedNum' onLoad={lotterypick} >{lotPlayer}</ div>
+      <table>
+        <tr>
+          <th className='bingoB'>B</th>
+          <th className='bingoI'>I</th>
+          <th className='bingoN'>N</th>
+          <th className='bingoG'>G</th>
+          <th className='bingoO'>O</th>
+        </tr>
+        <tr>
+          <td onClick={handleClick} id='B1'>{boardCells[0][0]}</td>
+          <td onClick={handleClick} id='I1'>{boardCells[0][1]}</td>
+          <td onClick={handleClick} id='N1'>{boardCells[0][2]}</td>
+          <td onClick={handleClick} id='G1'>{boardCells[0][3]}</td>
+          <td onClick={handleClick} id='O1'>{boardCells[0][4]}</td>
+        </tr>
+        <tr>
+          <td onClick={handleClick} id='B2'>{boardCells[1][0]}</td>
+          <td onClick={handleClick} id='I2'>{boardCells[1][1]}</td>
+          <td onClick={handleClick} id='N2'>{boardCells[1][2]}</td>
+          <td onClick={handleClick} id='G2'>{boardCells[1][3]}</td>
+          <td onClick={handleClick} id='O2'>{boardCells[1][4]}</td>
+        </tr>
+        <tr>
+          <td onClick={handleClick} id='B3'>{boardCells[2][0]}</td>
+          <td onClick={handleClick} id='I3'>{boardCells[2][1]}</td>
+          <td onClick={handleClick} id='N3' >Free</td>
+          <td onClick={handleClick} id='G3'>{boardCells[2][3]}</td>
+          <td onClick={handleClick} id='O3'>{boardCells[2][4]}</td>
+        </tr>
+        <tr>
+          <td onClick={handleClick} id='B4'>{boardCells[3][0]}</td>
+          <td onClick={handleClick} id='I4'>{boardCells[3][1]}</td>
+          <td onClick={handleClick} id='N4'>{boardCells[3][2]}</td>
+          <td onClick={handleClick} id='G4'>{boardCells[3][3]}</td>
+          <td onClick={handleClick} id='O4'>{boardCells[3][4]}</td>
+        </tr>
+        <tr>
+          <td onClick={handleClick} id='B5'>{boardCells[4][0]}</td>
+          <td onClick={handleClick} id='I5'>{boardCells[4][1]}</td>
+          <td onClick={handleClick} id='N5'>{boardCells[4][2]}</td>
+          <td onClick={handleClick} id='G5'>{boardCells[4][3]}</td>
+          <td onClick={handleClick} id='O5'>{boardCells[4][4]}</td>
+        </tr>
+
+      </table>
+      <button className='bingoBtn' onClick={windChecker}>Bingo</button>
+    </div>
+  )
 }
 
 export default PlayingZone;

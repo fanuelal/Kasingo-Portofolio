@@ -13,16 +13,25 @@ const pool = createPool({
     connectionLimit: 100
 });
 const optAuthentication = () => {
-    const genratedOtp = otpGenerator.generate(6, {upperCaseAlphabets: false})
+    const genratedOtp = otpGenerator.generate(6, { upperCaseAlphabets: false })
     return genratedOtp
 }
 const setOtpdb = (otpGenerated, phoneNumber) => {
     pool.query(`UPDATE useraccount SET validCode = ? WHERE phoneNumber = ?`,
-    [otpGenerated, phoneNumber],
-    (err, result) => {
-        if (!!err) return console.log('error on inserting')
-        return console.log(result)
-    })
+        [otpGenerated, phoneNumber],
+        (err, result) => {
+            if (!!err) return console.log('error on inserting')
+            return console.log(result)
+        })
+}
+register = (res, phoneNumber) => {
+    pool.query(`INSERT INTO useraccount(PhoneNumber) VALUES(?)`,
+        [phoneNumber],
+        (err, result) => {
+            if (!!err) return console.log('error on inserting')
+            res.send(result)
+            console.log(result)
+        })
 }
 router.post('/', (req, res) => {
     const phoneNumber = req.body.completePhone
@@ -35,10 +44,8 @@ router.post('/', (req, res) => {
             if (result) {
                 console.log('already account is registered ')
                 const otpGenerated = optAuthentication()
-                setOtpdb(otpGenerated,phoneNumber)
+                setOtpdb(otpGenerated, phoneNumber)
                 console.log(otpGenerated)
-                
-                // res.json(result)
                 res.send(result)
             }
             else {
@@ -47,15 +54,7 @@ router.post('/', (req, res) => {
         })
 
 })
-register = (res, phoneNumber) => {
-    pool.query(`INSERT INTO useraccount(PhoneNumber) VALUES(?)`,
-        [phoneNumber],
-        (err, result) => {
-            if (!!err) return console.log('error on inserting')
-            console.log(result)
-            console.log(result)
-        })
-}
+
 router.get('/', (req, res) => {
     res.send("API is working successfully");
 })

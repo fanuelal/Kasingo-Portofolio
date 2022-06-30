@@ -19,7 +19,8 @@
     "react-dom": "^18.2.0",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "^2.1.8"
+    "react-scripts": "^2.1.8",
+    "socket.io": "^4.5.1"
   },
   "browserslist": {
     "production": [

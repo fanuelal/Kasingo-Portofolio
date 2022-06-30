@@ -17,6 +17,7 @@
     "jade": "~1.11.0",
     "morgan": "~1.9.1",
     "otp-generator": "^4.0.0",
-    "prop-types": "^15.8.1"
+    "prop-types": "^15.8.1",
+    "socket.io": "^4.5.1"
   }
 }
