@@ -4,15 +4,12 @@ const router = express.Router()
 
 
 router.post('/', (req, res) => {
-    res.send('server is live ')
     let lotedNum = []
     let generated = 0
-    setInterval(() => {
-    generated = Math.floor(Math.random() * 74)
+    generated = Math.floor(Math.random() * 75)
     lotedNum.push(generated)
     console.log(generated)
-    res.send(generated)
-    }, 5000); 
+    res.send(Ison.stringify(generated));
 })
 
 router.get('/', (req, res) => {
