@@ -20,23 +20,25 @@ export function PlayingZone() {
       console.log(boardCells)
     })
   }
-  const lotterypick = () => { 
-    setInterval(() => {
-      setLotPlayer(Math.floor(Math.random() * 74))
-    }, 5000);
-  } 
-  // const lotterypick = () => {
-  //   Axios.post('http://localhost:9000/lotpick', {userAcountobj}).then((response) => {
-  //     console.log(response.data)
-  //   })
-  // }
-  // useEffect(() => {
-    
-  // })
+  // const lotterypick = () => { 
+  //   setInterval(() => {
+  //     setLotPlayer(Math.floor(Math.random() * 74))
+  //   }, 5000);
+  // } 
+  const lotterypick = () => {
+    Axios.post('http://localhost:9000/lotpick/', {userAcountobj}).then((response) => {
+       console.log(response.data)
+       setLotPlayer(response.data)
+      
+    })
+  }
   useEffect(() => {
-    lotterypick()
+    setInterval(() => {
+      lotterypick()
+    }, 1000);
+  })
+  useEffect(() => {
     borderGenerate()
-    
   }, []);
     
 

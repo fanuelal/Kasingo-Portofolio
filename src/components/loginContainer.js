@@ -14,7 +14,6 @@ function LoginBox() {
     const [countryCode, setCountryCode] = useState("");
     const {user, setUser} = useContext(UserContext);
     const navigate = useNavigate();
-    
     const handleCountryCodeChange = (event) => {
       setCountryCode(event.target.value)
     }
