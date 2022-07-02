@@ -36,7 +36,7 @@ function LoginBox() {
 
     return (
       <>
-        <div className='LoginHeader'>KASINGO {}</div>
+        <div className='LoginHeader'>KASINGO</div>
         <div className='loginDiv'>
 
         <form onSubmit={authenticate}>
@@ -48,11 +48,17 @@ function LoginBox() {
                 <option value="selectCountry">
                         Select Country
                 </option>
-                <option value='+251'> &#x1F1EA;&#x1F1F9; Ethiopia</option>
-                <option value='+55'> &#x1F1E7;&#x1F1F7; Brazil</option>
-                <option value='+94'> &#x1F1EE;&#x1F1F3; India</option>
-                <option value='+1'> &#x1F1FA;&#x1F1F8; US</option>
-                <option value='+44'> &#x1F1E6;&#x1F1FA; UK</option>
+                <option value='+251'> 
+                <span role="img" aria-label="et">&#x1F1EA;&#x1F1F9; Ethiopia</span></option>
+                <option value='+55'>
+                <span role="img" aria-label="br"> &#x1F1E7;&#x1F1F7; Brazil
+              </span>
+              </option>
+                <option value='+94'>
+                <span role="img" aria-label="in"> &#x1F1EE;&#x1F1F3; India</span></option>
+                <option value='+1'>
+                  <span role="img" aria-label="us"> &#x1F1FA;&#x1F1F8; US</span></option>
+                <option value='+44'><span role="img" aria-label="uk"> &#x1F1E6;&#x1F1FA; UK</span></option>
             </select>
             <input type='tel' 
                 className='phoneNumber' 

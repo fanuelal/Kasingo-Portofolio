@@ -20,22 +20,14 @@ export function PlayingZone() {
       console.log(boardCells)
     })
   }
-  // const lotterypick = () => { 
-  //   setInterval(() => {
-  //     setLotPlayer(Math.floor(Math.random() * 74))
-  //   }, 5000);
-  // } 
-  const lotterypick = () => {
-    Axios.post('http://localhost:9000/lotpick/', {userAcountobj}).then((response) => {
-       console.log(response.data)
-       setLotPlayer(response.data)
-      
-    })
-  }
   useEffect(() => {
     setInterval(() => {
-      lotterypick()
-    }, 1000);
+      Axios.post('http://localhost:9000/lotpick', {userAcountobj}).then((response) => {
+         console.log(response.data)
+         setLotPlayer(response.data)
+        
+      })
+    }, 4000);
   })
   useEffect(() => {
     borderGenerate()
@@ -49,7 +41,7 @@ export function PlayingZone() {
   return (
     <div>
       <Nav />
-      <div className='generatedNum' onLoad={lotterypick} >{lotPlayer}</ div>
+      <div className='generatedNum' >{lotPlayer}</ div>
       <table>
         <tr>
           <th className='bingoB'>B</th>

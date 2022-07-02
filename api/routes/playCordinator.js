@@ -19,7 +19,17 @@ reader.on("close", () => {
     boards = data.filter(element => { if (element.length >= 2) return element })
     console.log(boards);
 });
-
+// router.post('/', (req, res, error) => {
+//     let lotedNum = []
+//     let generated = 0
+//     let completePhone = req.body.completePhone
+//     if(!!error) console.log(e)
+//     generated = Math.floor(Math.random() * 75)
+//     lotedNum.push(generated)
+//     console.log(generated)
+//     res.status(200)
+//     res.send('hey');
+// })
 router.post('/' , (req, res) => {
     let board = []
     let end = takenBoars + 4

@@ -42,7 +42,7 @@ router.post('/', (req, res) => {
         (err, result) => {
             if (!!err) return console.log('error on inserting')
             if (result) {
-                console.log('already account is registered ')
+                console.log('already account is registered(login req.) ')
                 const otpGenerated = optAuthentication()
                 setOtpdb(otpGenerated, phoneNumber)
                 console.log(otpGenerated)
