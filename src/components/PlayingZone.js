@@ -3,10 +3,12 @@ import '../styles/main.css'
 import Nav from './nav'
 import Axios from 'axios';
 import { userAcountobj } from './loginContainer';
+import io from 'socket.io-client'
+
+const socket = io.connect()
 
 export function PlayingZone() {
-  // let {value, setValue} = useState(0)
-
+  
   const handleClick = (event) => {
     document.getElementById(event.currentTarget.id).style.background = '#2E133A';
     document.getElementById(event.currentTarget.id).style.color = 'white';
@@ -22,17 +24,17 @@ export function PlayingZone() {
   }
   useEffect(() => {
     setInterval(() => {
-      Axios.post('http://localhost:9000/lotpick', {userAcountobj}).then((response) => {
-         console.log(response.data)
-         setLotPlayer(response.data)
-        
-      })
-    }, 4000);
-  })
+      Axios.post('http://localhost:9000/lotpick', { userAcountobj })
+        .then((response) => {
+          console.log(response.data)
+          setLotPlayer(response.data)
+        })
+    }, 4000)
+  }, [])
   useEffect(() => {
     borderGenerate()
   }, []);
-    
+
 
   const windChecker = () => {
     console.log("winner")

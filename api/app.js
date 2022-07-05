@@ -1,6 +1,7 @@
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
+var http = require('http')
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 const cors = require('cors');
@@ -9,7 +10,8 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 var playCordinator = require('./routes/playCordinator')
 var dbRouter = require('./routes/dbAuthentication');
-var lotPickerRouter = require('./routes/lotpicker')
+var lotPickerRouter = require('./routes/lotpicker');
+var userInfoRouter = require('./routes/userInfoUpdater')
 var app = express();
 
 // view engine setup
@@ -26,6 +28,7 @@ app.use(cors());
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/dbAuthentication', dbRouter);
+app.use('/userInfo', userInfoRouter);
 app.use('/playLive', playCordinator)
 app.use('/lotpick', lotPickerRouter)
 

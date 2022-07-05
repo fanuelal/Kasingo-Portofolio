@@ -11,7 +11,6 @@ router.post('/', (req, res) => {
     lotedNum.push(generated)
     console.log(generated)
     res.status(200).send((generated).toString());
-    // res.send();
 }
 )
 

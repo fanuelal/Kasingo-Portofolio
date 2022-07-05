@@ -12,6 +12,7 @@
     flex-wrap: wrap;
     color: white;
     background-color: rgba(50, 50, 50, 0.5);
+    box-shadow: 0px 4px 5px 0 rgba(0, 0, 0, 0.5);
     margin: 10% 30%;
     top: 10%;
     position: absolute;
@@ -20,65 +21,103 @@
     padding-top: 10px;
     border-radius: 5px;
 }
-input[type=tel]{
-    border: none;
-    width: 250px;
-    height: 30px;
-    margin-left: 105px;
-    margin-top: 50px;
-    outline: none;
-    border-radius: 2px;
+#outlined-basic, #outlined-basicUname{
+    color: white;
+    border-bottom: 2px white solid;
+}
+#textFieldDivUser{
+    display: none;
+    margin-left: 0;
+}
+#outlined-basic label{
+    color: white;
 }
 input[type=tel]:focus{
     border-bottom: 3px solid dodgerblue;
     transition: all 0.3s;
 }
-.varification{
+#varification{
     border: none;
     width: 250px;
-    height: 30px;
+    height: 40px;
     outline: none;
     border-radius: 2px;
-    margin-left: 105px;
-    margin-top: 10px;
+    margin-left: 15%;
+    margin-top: 40px;
     display: none;
 }
 .contryCode{
     margin-top: 50px;
-    margin-left: 3px;
-    border: none;
+    margin-left: 10px;
+    border: 1.5px solid white;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
     height: 32px;
     width: 100px;
     position: absolute;
     outline: none;
-    border-radius: 2px;
+    border-radius: 3px;
 }
-.nextBtn{
+.contryCode option{
+    color: black;
+    background-color: white;
+}
+
+.lgnBtns {
     width: 150px;
     height: 30px;
     border: none;
-    margin-left: 30%;
-    margin-top: 20px;
     color:brown;
     font-weight: 600;
     outline: none;
     border-radius: 5px;
 }
-.nextBtn:hover{
+#nextBtn {
+    margin-left: 30%;
+    margin-top: 80px;
+}
+#loginbtn{
+    margin-left: 30%;
+    margin-top: 40px;
+}
+#loginbtn{
+    display: none;
+}
+#finishBtn{
+    margin-left: 30%;
+    margin-top: 60px;
+    display: none;
+}
+.lgnBtns:hover {
     background-color: brown;
     color: white;
     transition: all 0.3s;
     cursor: pointer;
 }
-.lablePhone{
-    position: absolute;
-    margin-top: 25px;
-    margin-left: 100px;
-    font-size: small;
-}
-.verifyWait{
-    color: gray;
-    margin-left: 30px;
+#verifyWait{
+    margin-top: 15px;
+    margin-left: 110px;
+    color: white;
     font-size: smaller; 
     display: none;
+}
+#loginSucces{
+    position: absolute;
+    margin-top: 32%;
+    margin-left: 40%;
+    z-index: 1;
+    visibility: hidden;
+}
+.textFiled_lable{
+    color: white !important;
+    font-size: small !important;
+}
+#WrongVerification{
+   position: absolute;
+   margin-top: 450px;
+   margin-left: 30%;
+   z-index: 2;
+   width: 400px;
+   visibility: hidden;
+   transition: all 0.3s;
 }
