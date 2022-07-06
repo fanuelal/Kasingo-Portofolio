@@ -112,7 +112,7 @@ input[type=tel]:focus{
     color: white !important;
     font-size: small !important;
 }
-#WrongVerification{
+#WrongVerification,#Phonesize{
    position: absolute;
    margin-top: 450px;
    margin-left: 30%;

@@ -1,18 +1,30 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var http = require('http')
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const app = express();
+const path = require('path');
+const http = require('http').createServer(app)
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 const cors = require('cors');
 const bodyParser = require('body-parser');
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var playCordinator = require('./routes/playCordinator')
-var dbRouter = require('./routes/dbAuthentication');
-var lotPickerRouter = require('./routes/lotpicker');
-var userInfoRouter = require('./routes/userInfoUpdater')
-var app = express();
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const playCordinator = require('./routes/playCordinator')
+const dbRouter = require('./routes/dbAuthentication');
+const lotPickerRouter = require('./routes/lotpicker');
+const userInfoRouter = require('./routes/userInfoUpdater');
+const io = require('socket.io')(http)
+
+
+//Socketio online user interaction 
+
+// io.on('connection', socket => {
+//   socket.on('JoinedUser', ({ counter}) => {
+//     counter++;
+//     console.log(counter)
+//     io.emit('JoinedUser', {counter})
+//   })
+//   })
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -47,5 +59,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
+
 
 module.exports = app;

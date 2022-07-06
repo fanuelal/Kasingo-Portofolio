@@ -1,18 +1,20 @@
 var express = require('express');
-const { Socket } = require('socket.io');
 var router = express.Router();
-var http = require('http').createServer(this.router)
+var http = require('http').Server(router)
 var io = require('socket.io')(http)
 /* GET users listing. */
 
-io.on('connection', () => {
+var counter = 0
+io.on('connection', (socket) => {
+  counter++;
   console.log('a user connected')
-  Socket.on('disconnect', () => {
-    console.log('a user disconnected')
-  })
 })
-router.get('/', (req, res, next) => {
-  res.send('respond with a resource');
-});
+// router.get('/', (req, res, next) => {
+//   res.send('respond with a resource');
+// });
+
+// http.listen(8000, () => {
+//   console.log('accepting connection on socket.io')
+// })
 
 module.exports = router;

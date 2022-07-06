@@ -50,7 +50,7 @@ router.post('/', (req, res) => {
     pool.query(`SELECT * FROM useraccount WHERE phoneNumber = ? `,
         [phoneNumber],
         (err, result) => {
-            if (!!err) return console.log('Error on selecting')
+            if (!!err) return console.log('Error on selecting' + err)
             if (result != '') {
                 console.log('already account is registered(login req.) ')
                 const otpGenerated = optAuthentication()

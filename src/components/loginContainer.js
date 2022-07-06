@@ -7,8 +7,14 @@ import { useNavigate } from 'react-router';
 import { Socket } from 'socket.io-client';
 import { Alert, AlertTitle } from '@mui/material';
 import TextField from '@mui/material/TextField';
-import CircularProgress from '@mui/material/CircularProgress'
-import mdiPageNextOutline from '@mui/material/SvgIcon'
+// import CircularProgress from '@mui/material/CircularProgress'
+// import mdiPageNextOutline from '@mui/material/SvgIcon'
+import AccountCircleIcon from '@mui/icons-material/AccountCircle';
+import LoginIcon from '@mui/icons-material/Login';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+import HowToRegIcon from '@mui/icons-material/HowToReg';
+import Box from '@mui/material/Box';
+
 // import Badge from '@mui/material/Badge';
 // import MailIcon from '@mui/icons-material/Mail';
 export var userAcountobj = {}
@@ -22,6 +28,11 @@ function LoginBox() {
     setCountryCode(event.target.value)
   }
   const handleNextBtn = (event) => {
+    if(phone.length <= 3){
+      document.getElementById('Phonesize').style.visibility = 'visible'
+      console.log('phone length')
+    }
+    else{
     event.preventDefault();
     document.getElementById('nextBtn').style.display = 'none';
     document.getElementById('loginbtn').style.display = 'block';
@@ -30,7 +41,7 @@ function LoginBox() {
     document.getElementById('countryCodeId').style.display = 'none';
     document.getElementById('textFieldDivPhone').style.display = 'none';
     setTimeout(() => { document.getElementById('loginSucces').style.visibility = 'visible'; }, 1000)
-    setTimeout(() => { document.getElementById('loginSucces').style.visibility = 'hidden'; }, 2000)
+    setTimeout(() => { document.getElementById('loginSucces').style.visibility = 'hidden'; }, 3000)
     Axios.post('http://localhost:9000/dbAuthentication/',
       { completePhone: countryCode + phone }).then((response) => {
         if (response.data[0]) {
@@ -38,8 +49,7 @@ function LoginBox() {
           console.log('LoginRes ' + userAcountobj.Loginresult)
         }
       }).catch((err) => {console.error('comeback soon' + err)})
-
-
+    }
   }
   const authenticate =  (event) => {
     event.preventDefault();
@@ -82,9 +92,17 @@ function LoginBox() {
   return (
     <>
       <Alert severity='success' id="loginSucces">Verification sent</Alert>
-      <div className='LoginHeader'>KASINGO</div>
+      <div className='LoginHeader'>KASINGO </div>
       <div className='loginDiv'>
-
+      <AccountCircleIcon  
+                    sx={{
+                      width: 250,
+                      height: 60,
+                      marginLeft: 8,
+                      marginTop: -5,
+                      position: 'absolute',
+                          }
+                    }/>
       <form onSubmit={authenticate}>
           <select className='contryCode'
             value={countryCode}
@@ -132,7 +150,7 @@ function LoginBox() {
                 }
               }
               InputLabelProps={{ className: 'textFiled_lable' }}
-              required
+              
                         />
       </div>          
 
@@ -166,10 +184,31 @@ function LoginBox() {
           />
           {/* <CircularProgress color="success" /> */}
 
-          <button id='nextBtn' className='lgnBtns' onClick={handleNextBtn}>Next</button>
-          <button id='loginbtn' className='lgnBtns' type='submit'>Verify</button>
-          <button id='finishBtn' className='lgnBtns' type='submit' onClick={handleUserName}>Finish</button>
+          <button id='nextBtn' className='lgnBtns' onClick={handleNextBtn}><LoginIcon
+          sx={{
+            position: 'absolute',
+          lineHeight: 0,
+          marginLeft: -4,
+          marginTop: -0.5
+          }}/>Next
+          </button>
+          <button id='loginbtn' className='lgnBtns' type='submit'><CheckCircleIcon
+          sx={{
+            position: 'absolute',
+          lineHeight: 0,
+          marginLeft: -4,
+          marginTop: -0.5
+          }}/>Verify</button>
+          <button id='finishBtn' className='lgnBtns' type='submit' onClick={handleUserName}><HowToRegIcon
+          sx={{
+            position: 'absolute',
+          lineHeight: 0,
+          marginLeft: -4,
+          marginTop: -0.5
+          }}/>
+            Finish</button>
         </form>
+        
       </div>
       {/* <Badge badgeContent={4} color="primary">
       <MailIcon color="action" />
@@ -177,6 +216,9 @@ function LoginBox() {
       <Alert severity="error" id='WrongVerification'
         onClose={(e) => { document.getElementById('WrongVerification').style.display = 'none' }}>
         Incorrect Verification Code — check it out!</Alert>
+        <Alert severity="error" id='Phonesize'
+        onClose={(e) => { document.getElementById('Phonesize').style.display = 'none' }}>
+        Incorrect Phone Number — check it out!</Alert>
     </>
   );
 }

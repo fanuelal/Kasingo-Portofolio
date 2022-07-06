@@ -4,6 +4,7 @@ import Nav from './nav'
 import Axios from 'axios';
 import { userAcountobj } from './loginContainer';
 import io from 'socket.io-client'
+import { Alert } from '@mui/material';
 
 const socket = io.connect()
 
@@ -19,16 +20,18 @@ export function PlayingZone() {
   const borderGenerate = () => {
     Axios.post('http://localhost:9000/playLive', { userAcountobj }).then((response) => {
       setboardCells(response.data)
-      console.log(boardCells)
+      // console.log(boardCells)
+    }).catch(() => {
+      console.log("Doesn't generate board")
     })
   }
   useEffect(() => {
     setInterval(() => {
       Axios.post('http://localhost:9000/lotpick', { userAcountobj })
         .then((response) => {
-          console.log(response.data)
+          // console.log(response.data)
           setLotPlayer(response.data)
-        })
+        }).catch(() => console.log('unable to pickdata from the server'))
     }, 4000)
   }, [])
   useEffect(() => {
@@ -37,12 +40,16 @@ export function PlayingZone() {
 
 
   const windChecker = () => {
+    document.getElementById('WrongVerification').visibility = 'visible'
     console.log("winner")
   }
 
   return (
     <div>
       <Nav />
+      <Alert severity="error" id='WrongVerification'
+        onClose={(e) => { document.getElementById('WrongVerification').style.visibility = 'hidden' }}>
+        Incorrect Bingo winner Request — check it out!</Alert>
       <div className='generatedNum' >{lotPlayer}</ div>
       <table>
         <tr>
@@ -90,6 +97,7 @@ export function PlayingZone() {
 
       </table>
       <button className='bingoBtn' onClick={windChecker}>Bingo</button>
+
     </div>
   )
 }

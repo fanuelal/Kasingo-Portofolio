@@ -42,6 +42,7 @@ nav ul li {
     font-weight: 600;
     width: 150px;
     margin-top: 70px;
+    margin-left: 10px;
     height: 20px;
     text-decoration: none;
 }
@@ -68,10 +69,10 @@ nav ul li:hover{
     text-shadow: rgba(255, 255, 255, 0.5);
     transition: all 0.3s;
 }
-nav ul li:active {
+/* nav ul li:active {
     color: brown;
     border-bottom: 2px solid;
-}
+} */
 
 .onlinePlayStatus{
     display: flex;
@@ -125,7 +126,7 @@ nav ul li:active {
 
 .homeMain {
     background-color: white;
-    box-shadow: 0 5px 5px 0 rgb(60, 60, 60);
+    box-shadow: 0px 4px 5px 0 rgba(0, 0, 0, 0.5);
     width: 300px;
     height: 350px;
     margin-left: 30%;
@@ -180,7 +181,7 @@ table {
     margin-left: 35%;
     text-align: center;
     height: 300px;
-    box-shadow: 5px 0 5px 0 rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 4px 5px 0 rgba(0, 0, 0, 0.5);
     border: none;
     cursor: pointer;
 }
@@ -190,11 +191,11 @@ table {
 .bingoN,
 .bingoO,
 .bingoG {
-    background-color: red;
+    background-color: rgb(4, 105, 152);
 }
 
 table td:hover {
-    background-color: #2E133A;
+    background-color: #38034e;
     border-radius: 5px;
     color: white;
 }
@@ -406,4 +407,13 @@ Link{
     width: 400px;
     height: 300px;
     color: white;
+}
+.WrongVerification{
+    position: absolute;
+    margin-top: 0;
+    margin-left: 30%;
+    z-index: 2;
+    width: 400px;
+    visibility: visible;
+    transition: all 0.3s;
 }
